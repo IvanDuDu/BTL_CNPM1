@@ -7,7 +7,7 @@ const checkAuth = AsyncHandler(async (req, res, next) => {
   if (headerAuth && headerAuth.startsWith("Bearer")) {
     try {
       const token = headerAuth.split(" ")[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token,'abc123');
       req.user = await User.findById(decoded.id).select("-password");
       next();
     } catch (error) {
