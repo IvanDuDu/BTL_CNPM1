@@ -1,33 +1,3 @@
-# G-Shop eCommerce Platform
-
-> eCommerce platform built with the MERN stack & Redux.
-
-## Live Demo https://g-shop-jq40.onrender.com/
-![Screenshot from 2023-12-19 16-11-52](https://github.com/amitpanwar789/G-Shop/assets/64302444/2827909c-97de-479a-ac05-00dfdb333d73)
-
-
-![Screenshot from 2023-12-19 16-09-21](https://github.com/amitpanwar789/G-Shop/assets/64302444/3376abf1-cdba-4859-bf2e-c391fa015b85)
-
-
-## Features
-
-- Full featured shopping cart
-- User profile with orders
-- Admin product management
-- Admin user management
-- Admin Order details page
-- Database seeder (products & users)
-
-## Usage
-
-### ES Modules in Node
-
-We use ECMAScript Modules in the backend in this project. Be sure to have at least Node v14.6+ or you will need to add the "--experimental-modules" flag.
-
-Also, when importing a file (not a package), be sure to add .js at the end or you will get a "module not found" error
-
-You can also install and setup Babel if you would like
-
 ### Env Variables
 
 Create a .env file in then root and add the following
