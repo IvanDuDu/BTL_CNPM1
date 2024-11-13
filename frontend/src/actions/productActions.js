@@ -111,7 +111,10 @@ export const createProduct = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
+      // cần phải thêm phương thức truyền data
+      // data là 1 trường dữ liệu được nhập thủ công bởi admin
+      //post là phương thức gửi dữ liệu theo gói lên server , server gửi lại dữ liệu vào trong database map<label : input>
+      
     const { data } = await axios.post(`/api/products`, {}, config);
 
     dispatch({

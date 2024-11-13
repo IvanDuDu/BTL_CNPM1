@@ -2,9 +2,9 @@ import axios from 'axios'
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from '../constants/cartConstants'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`)
+  const { data } = await axios.get(`/api/products/${id}`)   //lấy link trang
 
-  dispatch({
+  dispatch({   
     type: CART_ADD_ITEM,
     payload: {
       product: data._id,
@@ -14,18 +14,20 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
       countInStock: data.countInStock,
       qty,
     },
-  })
-
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  })    // gửi gói đata
+// bình thường để lưu dũ liệu nó có 2 phương pháp : 1 là lưu vào localStorage dành cho những phương thức yêu cầu ít bộ nhớ 
+// phương pháp thứ 2 là sử dụng redux 
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))    //lưu trữ ở trong cart/cartItems
 }
 
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
     type: CART_REMOVE_ITEM,
-    payload: id,
+    payload: id,  
   })
 
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))    // chức năng remove, tuy nhiên cũng chỉ là remove khi nhấn icon
+                                                                                  // cần cập nhật thêm remove khi đã thực hiện mua hàng
 }
 
 export const saveShippingAddress = (data) => (dispatch) => {

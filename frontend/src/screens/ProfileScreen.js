@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { listMyOrders } from "../actions/orderActions";
+import { listMyOrders ,deleteOrder} from "../actions/orderActions";
 import { Link } from "react-router-dom";
 
 const ProfileScreen = ({ location, history }) => {
@@ -28,6 +28,13 @@ const ProfileScreen = ({ location, history }) => {
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
+  const orderDelete = useSelector((state) => state.orderDelete);
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = orderDelete;
+
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -48,6 +55,12 @@ const ProfileScreen = ({ location, history }) => {
       setMessage("Passwords do not match");
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
+    }
+  };
+
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteOrder(id));
     }
   };
 
@@ -106,11 +119,14 @@ const ProfileScreen = ({ location, history }) => {
         </Form>
       </Col>
       <Col className="p-3" md={8}>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
         <h2>My Orders</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
           <Message variant="danger">{errorOrders}</Message>
+          
         ) : (
           <Table striped bordered hover responsive className="table-sm">
             <thead>
@@ -149,6 +165,13 @@ const ProfileScreen = ({ location, history }) => {
                         Details
                       </Button>
                     </Link>
+                    <Button
+                      variant="danger"
+                      className="btn-sm"
+                      onClick={() => deleteHandler(order._id)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -161,3 +184,8 @@ const ProfileScreen = ({ location, history }) => {
 };
 
 export default ProfileScreen;
+
+
+// thực hiện chức năng xóa đơn:
+//tạo nút xóa đơn : onClick thực hiện handler hiện màn hình xác nhận  xóa đơn , ấn nút tại màn hình xóa đơn thì thực hiện xóa đơn
+// xóa đơn 

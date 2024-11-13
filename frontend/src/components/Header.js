@@ -27,6 +27,7 @@ const Header = ({ history }) => {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color: "transparent",border: "1px solid black"}}/>
           <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: "flex-end" }}>
+
             <Route render={({ history }) => <SearchBox history={history} />} />
             <Nav
               className="ml-auto my-2 my-lg-0"
@@ -41,8 +42,9 @@ const Header = ({ history }) => {
                   ></i>{" "}
                   Cart
                 </Nav.Link>
-              </Link>
+              </Link>  
               {userInfo ? (
+                
                 <NavDropdown title={userInfo.name} id="username" >
                   <NavDropdown.Item href="/profile" >Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
