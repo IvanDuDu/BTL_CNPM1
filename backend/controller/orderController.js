@@ -37,9 +37,7 @@ const addOrderItems = AsyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get order by ID
-// @route   GET /api/orders/:id
-// @access  Private
+
 
 // thêm deleteOrder
 const deleteOrder = AsyncHandler(async (req, res) => {
@@ -53,8 +51,11 @@ const deleteOrder = AsyncHandler(async (req, res) => {
     throw new Error("Order not found");
   }
 });
+// van chua chay duoc
 
-
+// @desc    Get order by ID
+// @route   GET /api/orders/:id
+// @access  Private
 const getOrderById = AsyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     "user",

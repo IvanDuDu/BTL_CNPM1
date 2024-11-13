@@ -28,12 +28,7 @@ const ProfileScreen = ({ location, history }) => {
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
-  const orderDelete = useSelector((state) => state.orderDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = orderDelete;
+  
 
   useEffect(() => {
     if (!userInfo) {
@@ -119,14 +114,11 @@ const ProfileScreen = ({ location, history }) => {
         </Form>
       </Col>
       <Col className="p-3" md={8}>
-      {loadingDelete && <Loader />}
-      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
         <h2>My Orders</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
           <Message variant="danger">{errorOrders}</Message>
-          
         ) : (
           <Table striped bordered hover responsive className="table-sm">
             <thead>

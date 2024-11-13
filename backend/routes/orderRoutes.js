@@ -6,13 +6,15 @@ import {
   getOrderById,
   updateOrderToDelivered,
   updateOrderToPaid,
+ deleteOrder,
   
 } from "../controller/orderController.js";
 import { checkAdmin, checkAuth } from "../middleware/authMiddleware.js";
 
 router.route("/").post(checkAuth, addOrderItems).get(checkAuth, checkAdmin,getMyOrders);
-router.route('/myorders').get(checkAuth, getMyOrders)
-router.route("/:id").get(checkAuth, getOrderById);
+router.route('/myorders').get(checkAuth, getMyOrders);
+router.route("/:id").get(checkAuth, getOrderById)
+.delete(checkAuth,deleteOrder); 
 router.route("/:id/pay").put(checkAuth, updateOrderToPaid);
 router.route('/:id/deliver').put(checkAuth, checkAdmin, updateOrderToDelivered)
 
