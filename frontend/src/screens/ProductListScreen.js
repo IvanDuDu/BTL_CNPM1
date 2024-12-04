@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
-import { Table, Button, Row, Col } from "react-bootstrap";
+import { Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import {
-  listProducts,
-  deleteProduct,
-  createProduct,
-} from "../actions/productActions";
-import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
-import Paginate from "../components/Paginate";
 import { Link } from "react-router-dom";
+import {
+  deleteProduct,
+  listProducts
+} from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
+import Paginate from "../components/Paginate";
+import { PRODUCT_CREATE_RESET } from "../constants/productConstants";
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -63,9 +62,9 @@ const ProductListScreen = ({ history, match }) => {
     }
   };
 
-  const createProductHandler = (product) => {
-    dispatch(createProduct());
-  };
+  // const createProductHandler = (product) => {
+  //   dispatch(createProduct());
+  // };
 
   return (
     <>
@@ -74,9 +73,11 @@ const ProductListScreen = ({ history, match }) => {
           <h1>Products</h1>
         </Col>
         <Col className="text-right col-lg-2">
-          <Button className="my-3" onClick={createProductHandler}>
+        <Link to="/admin/createproduct">
+          <Button className="my-3">
             <i className="fas fa-plus"></i> Create Product
           </Button>
+        </Link>
         </Col>
       </Row>
       {loadingDelete && <Loader />}
