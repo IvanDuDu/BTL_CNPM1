@@ -1,10 +1,10 @@
 import React from "react";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link, Route } from "react-router-dom";
 import { logout } from "../actions/userActions";
+import "./Header.css";
 import SearchBox from "./SearchBox";
-import "./Header.css"
 
 const Header = ({ history }) => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Header = ({ history }) => {
               style={{ maxHeight: "80px" }}
               navbarScroll
             >
-              <Link class="text-decoration-none" to="/cart">
+              <Link class="text-decoration-none" to= {userInfo ? "/cart" : "/login"}>
                 <Nav.Link href="/cart" className="text-light">
                   <i
                     className="fas fa-shopping-cart"
@@ -42,6 +42,7 @@ const Header = ({ history }) => {
                   Cart
                 </Nav.Link>
               </Link>
+
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username" >
                   <NavDropdown.Item href="/profile" >Profile</NavDropdown.Item>
@@ -60,6 +61,7 @@ const Header = ({ history }) => {
                   </Nav.Link>
                 </Link>
               )}
+
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
                   <Link class="text-decoration-none" to="/admin/userlist">
