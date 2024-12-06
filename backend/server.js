@@ -1,17 +1,17 @@
-import path from "path";
+import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
-import dotenv from "dotenv";
+import path from "path";
 import connectDB from "./config/db.js";
-import productRoutes from "./routes/productRoutes.js";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-import userRoutes from "./routes/userRoutes.js";
+import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 dotenv.config();
-const PORT =  3000;
+const PORT =  5000;
 connectDB();
 
 if (process.env.NODE_ENV === "development") {
