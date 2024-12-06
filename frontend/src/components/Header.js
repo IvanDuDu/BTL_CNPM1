@@ -42,12 +42,8 @@ const Header = ({ history }) => {
                   ></i>{" "}
                   Cart
                 </Nav.Link>
-<<<<<<< HEAD
-              </Link>  
-=======
               </Link>
 
->>>>>>> upstream/toàn
               {userInfo ? (
                 
                 <NavDropdown title={userInfo.name} id="username" >
