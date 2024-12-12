@@ -95,6 +95,19 @@ const products = [
     rating: 4,
     numReviews: 10,
   },
+  {
+    name: "Túi Xách Nam Gence GCE28",
+    image: "/images/sample3.jpg",
+    description:
+      "Túi xách da bò Mill cao cấp, đeo ngang vai, Đựng được máy tính xách tay 15.6",
+    brand: "Gence",
+    category: "Phụ kiện",
+    price: 110.26,
+    countInStock: 20,
+    rating: 4,
+    numReviews: 9,
+  },
+
 
 
 ];
