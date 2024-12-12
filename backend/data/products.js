@@ -155,6 +155,19 @@ const products = [
     rating: 3.5,
     numReviews: 15,
   },
+  {
+    name: "Balo da đựng laptop GB-BL13",
+    image: "/images/sample8.jpg",
+    description:
+      "Balo chất liệu da PU cao cấp chống nước, đường may tỉ mỉ, tinh tế. Kích thước: 30x43x17 cm",
+    brand: "GuBag",
+    category: "Phụ kiện",
+    price: 31.46,
+    countInStock: 20,
+    rating: 4,
+    numReviews: 20,
+  },
+
 
 
 
