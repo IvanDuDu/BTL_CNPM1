@@ -143,6 +143,19 @@ const products = [
     rating: 3,
     numReviews: 3,
   },
+  {
+    name: "Túi đeo chéo nam đẹp GB-TC10",
+    image: "/images/sample7.jpg",
+    description:
+      "Túi đeo chéo vải Oxford, chống thấm, chống nước, chống xước kết hợp da PU. Kích thước: 25 x 20 x 10cm",
+    brand: "Gubag",
+    category: "Phụ kiện thời trang nam",
+    price: 10.99,
+    countInStock: 30,
+    rating: 3.5,
+    numReviews: 15,
+  },
+
 
 
 
