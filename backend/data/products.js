@@ -119,6 +119,19 @@ const products = [
     rating: 4.5,
     numReviews: 10,
   },
+  {
+    name: "Túi đeo chéo nam Gence da bò Mill TD18",
+    image: "/images/sample5.jpg",
+    description:
+      "Túi đeo chéo, túi đeo ngang vai, đựng điện thoại, ví nhỏ, vật dụng cá nhân…",
+    brand: "Gence",
+    category: "Phụ kiện thời trang nam",
+    price: 53.16,
+    countInStock: 15,
+    rating: 3.5,
+    numReviews: 6,
+  },
+
 
 
 
