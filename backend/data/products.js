@@ -179,6 +179,19 @@ const products = [
     rating: 4.5,
     numReviews: 9,
   },
+  {
+    name: "Túi đeo chéo da bò M2CB-07",
+    image: "/images/sample10.jpg",
+    description:
+      "Túi da bò M2CB-07 được làm từ chất liệu da bò hạt cao cấp cùng tone màu hiện đại, nam tính. Chất da bò mềm mại cùng form túi vừa phải cũng là điểm cộng được nhiều người lựa chọn.",
+    brand: "Giannov",
+    category: "Phụ kiện thời trang nam",
+    price: 64.98,
+    countInStock: 9,
+    rating: 3,
+    numReviews: 2,
+  },
+
 
 
 
