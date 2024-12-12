@@ -107,6 +107,19 @@ const products = [
     rating: 4,
     numReviews: 9,
   },
+  {
+    name: "Clutch cầm tay nam Gence CL05",
+    image: "/images/sample4.jpg",
+    description:
+      "Clutch cầm tay, đeo vai form dáng công sở vừa điện thoại giấy tờ A4 (vừa ipab 12.9).",
+    brand: "Gence",
+    category: "Phụ kiện thời trang nam",
+    price: 72.85,
+    countInStock: 22,
+    rating: 4.5,
+    numReviews: 10,
+  },
+
 
 
 
