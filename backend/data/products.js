@@ -203,6 +203,19 @@ const products = [
     rating: 3.5,
     numReviews: 19,
   },
+  {
+    name: "Túi đeo chéo MSCB-02",
+    image: "/images/sample12.jpg",
+    description:
+      "Túi đeo chéo da bò KURO MSCB-02 được làm từ chất liệu da bò vân sần cao cấp với các họa tiết vân da sang trọng. Chất liệu da bò dễ dàng vệ sinh và bảo quản",
+    brand: "Kuro",
+    category: "Phụ kiện thời trang nam",
+    price: 61.04,
+    countInStock: 19,
+    rating: 4,
+    numReviews: 12,
+  },
+
 
 
 
