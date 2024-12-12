@@ -131,6 +131,19 @@ const products = [
     rating: 3.5,
     numReviews: 6,
   },
+  {
+    name: "Ví da thật cho nam GB-VN10",
+    image: "/images/sample6.jpg",
+    description:
+      "Ví nam thời trang làm từ da bò kích thước 11,6 cm * 9,8 cm * 1,8 cm. Nhiều ngăn đựng tiền mặt, thẻ,…",
+    brand: "Gubag",
+    category: "Phụ kiện",
+    price: 13.74,
+    countInStock: 12,
+    rating: 3,
+    numReviews: 3,
+  },
+
 
 
 
