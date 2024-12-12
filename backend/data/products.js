@@ -167,6 +167,19 @@ const products = [
     rating: 4,
     numReviews: 20,
   },
+  {
+    name: "Túi đeo chéo da bò MWCB-01",
+    image: "/images/sample9.jpg",
+    description:
+      "Túi da bò sáp MWCB-01 được làm từ chất liệu da bò sáp cao cấp mang lại nét cá tính, đặc trưng riêng cho từng người sử dụng. Chắc hẳn là món đồ không thể thiếu cho những ngày đi chơi, đi phượt",
+    brand: "Giannov",
+    category: "Phụ kiện thời trang nam",
+    price: 72.85,
+    countInStock: 22,
+    rating: 4.5,
+    numReviews: 9,
+  },
+
 
 
 
