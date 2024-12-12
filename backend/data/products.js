@@ -83,6 +83,19 @@ const products = [
     rating: 4.5,
     numReviews: 12,
   },
+  {
+    name: "Túi xách nam đẹp GB-TL31",
+    image: "/images/sample2.jpg",
+    description:
+      "Quai xách bằng da, may chắc chắn, bền bỉ, gập đi gập lại 10 triệu lần thoải mái.Nhiều ngăn: đựng laptop, giấy tờ, sách sở, điện thoại, ví tiền, sạc máy tính, sạc dự phòng…",
+    brand: "Gubag",
+    category: "Phụ kiện",
+    price: 27.53,
+    countInStock: 12,
+    rating: 4,
+    numReviews: 10,
+  },
+
 
 ];
 
