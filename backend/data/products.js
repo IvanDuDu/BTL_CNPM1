@@ -191,6 +191,19 @@ const products = [
     rating: 3,
     numReviews: 2,
   },
+  {
+    name: "Ví đứng VICTOR - Da bò hạt",
+    image: "/images/sample11.jpg",
+    description:
+      "Được thiết kế từ chất liệu da bò hạt cao cấp cùng tone màu thời trang, hiện đại. Chất liệu da bò cùng các vân da bò hạt giúp nâng cao độ mềm mịn của sản phẩm trong quá trình sử dụng ",
+    brand: "Victor",
+    category: "Phụ kiện",
+    price: 21.66,
+    countInStock: 30,
+    rating: 3.5,
+    numReviews: 19,
+  },
+
 
 
 
