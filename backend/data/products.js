@@ -71,6 +71,19 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
+  {
+    name: "Túi Xách Công Sở Nam",
+    image: "/images/sample1.jpg",
+    description:
+      "Đựng được máy tính xách tay 14″, Ipad 9.7″, 7.9″ & Máy tính bảng các loại",
+    brand: "Gence",
+    category: "Phụ kiện",
+    price: 118.66,
+    countInStock: 0,
+    rating: 4.5,
+    numReviews: 12,
+  },
+
 ];
 
 export default products;
