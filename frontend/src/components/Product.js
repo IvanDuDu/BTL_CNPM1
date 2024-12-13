@@ -1,21 +1,32 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import Rating from "./Rating";
 
 function Product({ product }) {
   return (
-    <Link class="text-decoration-none" to={`/product/${product._id}`}>
+    <Link className="text-decoration-none" to={`/product/${product._id}`}>
       <Card
         className="product-card my-2"
         style={{ width: "auto", height: "100%" }}
       >
-        <Card.Img src={product.image} variant="top" />
+        {/* Set a fixed size for the image */}
+        <div style={{ width: "100%", height: "200px", overflow: "hidden" }}>
+          <Card.Img
+            src={product.image}
+            variant="top"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
         <Card.Body>
-          <Card.Title as="div" style={{minHeight:"40%"}}>
-            <strong class="text-dark font-size-4">{product.name}</strong>
+          <Card.Title as="div" style={{ minHeight: "40%" }}>
+            <strong className="text-dark font-size-4">{product.name}</strong>
           </Card.Title>
-          <Card.Text as="div" class="text-muted">
+          <Card.Text as="div" className="text-muted">
             <Rating
               value={product.rating}
               text={`${product.numReviews} reviews`}
