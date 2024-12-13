@@ -20,5 +20,5 @@ router
   .put(checkAuth, checkAdmin, updateProduct);
 
 router.route("/:id/reviews").post(checkAuth, createProductReview);
-
+// review chỉ sử dụng phuognw thức post vào routes chỉ đi vào trường reviews
 export default router;

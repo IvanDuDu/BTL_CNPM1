@@ -51,9 +51,9 @@ const reducer = combineReducers({
   productReviewCreate: productReviewCreateReducer,
 });
 
-const cartItemsFromStorage = localStorage.getItem("cartItems")
+ const cartItemsFromStorage = localStorage.getItem("cartItems")
   ? JSON.parse(localStorage.getItem("cartItems"))
-  : [];
+   : [];
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
@@ -65,7 +65,7 @@ const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
 
 const initialState = {
   cart: {
-    cartItems: cartItemsFromStorage,
+    cartItems: [cartItemsFromStorage],
     shippingAddress: shippingAddressFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
@@ -78,3 +78,4 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
 export default store;
+// cần việc clear dữ liệu ở đây

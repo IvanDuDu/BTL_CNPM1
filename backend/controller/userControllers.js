@@ -1,6 +1,7 @@
 import AsyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
+import Product from "../models/productModel.js";
 
 //@desc Auth user & get token
 //@route POST /api/users/login
@@ -131,7 +132,6 @@ const deleteUser = AsyncHandler(async (req, res) => {
 // @access  Private/Admin
 const getUserById = AsyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select("-password");
-
   if (user) {
     res.json(user);
   } else {
@@ -165,6 +165,102 @@ const updateUser = AsyncHandler(async (req, res) => {
   }
 });
 
+
+// @desc    Add new item to cart
+// @route   POST /api/users/:id/cart
+// @access  Privvate
+const addItemToCart = AsyncHandler(async (req, res) => {
+  const { qty } = req.body; // Lấy số lượng từ body
+  const userId = req.params.userId; 
+  const productId = req.params.productId; // Lấy productId từ route
+
+  // Kiểm tra thông tin người dùng
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Kiểm tra sản phẩm có tồn tại trong database không
+  const product = await Product.findById(productId);
+  if (!product) {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+
+  // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+  const existingItem = user.cartItems.find(
+    (item) => item.product.toString() === productId
+  );
+
+  if (existingItem) {
+    res.status(400);
+    throw new Error("Product already in cart");
+  }
+
+  // Tạo sản phẩm mới với thông tin đầy đủ
+  const newItem = {
+    product: productId,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+    qty: qty || 1,  // Mặc định là 1 nếu không có qty
+    stock: product.countInStock,
+  };
+
+  // Thêm sản phẩm vào giỏ hàng
+  user.cartItems.push(newItem);
+  await user.save();
+
+  res.status(201).json(user.cartItems);
+});
+
+
+
+// @desc    delete item from cart
+// @route   DELETE /api/users/:id/cart
+// @access  Private
+ const deleteItemFromCart = AsyncHandler(async (req, res) => {
+  const userId = req.params.userId; // Lấy userId từ route
+  const productId = req.params.productId; // Lấy productId từ route
+
+  const user = await User.findById(userId);
+
+  if (user) {
+    const itemIndex = user.cartItems.findIndex(
+      (item) => item.product.toString() === productId
+    );
+
+    if (itemIndex > -1) {
+      user.cartItems.splice(itemIndex, 1); // Xóa sản phẩm khỏi cartItems
+      await user.save();
+
+      res.status(200).json({ message: "Item removed from cart" });
+    } else {
+      res.status(404);
+      throw new Error("Item not found in cart");
+    }
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+
+
+const getMyCart = AsyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).populate("cartItems.product", "name price image ");
+  
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+  res.status(200).json(user.cartItems);
+  
+});
+
+
+
 export {
   authUser,
   registerUser,
@@ -174,4 +270,7 @@ export {
   deleteUser,
   getUserById,
   updateUser,
+  deleteItemFromCart,
+  addItemToCart,
+  getMyCart,
 };

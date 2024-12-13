@@ -160,7 +160,7 @@ const ProfileScreen = ({ location, history }) => {
                     <Button
                       variant="danger"
                       className="btn-sm"
-                      onClick={() => deleteHandler(order._id)}
+                      onClick={() => deleteHandler(order._id)}      // ở đây truyền vào _id của order thì ánh xạ sang bên kia sẽ là user.product 
                     >
                       <i className="fas fa-trash"></i>
                     </Button>

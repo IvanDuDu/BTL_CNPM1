@@ -17,6 +17,7 @@ import {
   listProductDetails,
   createProductReview,
 } from "../actions/productActions";
+import { addToCart } from "../actions/cartActions"; // Import action addToCart
 import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 import Meta from "../components/Meta";
 import "../App.css"
@@ -48,10 +49,12 @@ const ProductScreen = ({ history, match }) => {
     dispatch(listProductDetails(match.params.id));
   }, [dispatch, match, successProductReview]);
 
+  
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
-  };
-
+    dispatch(addToCart(match.params.id, qty)); // Thêm sản phẩm vào user.cart
+    history.push("/cart"); // Điều hướng đến trang Cart
+  };// ở đây chỉ lấy được id của sản phẩm , chưa lấy được id của người dùng , do đó chưa truy cập được đến cart của người dùng
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -158,14 +161,15 @@ const ProductScreen = ({ history, match }) => {
               <h2 className="my-3">Reviews</h2>
               {product?.reviews?.length === 0 && <Message>No Reviews</Message>}
               <ListGroup variant="flush">
-                {product?.reviews?.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                {product?.reviews?.map((review) => (     // truy cập reviews của product và map hết reviews ra
+                  <ListGroup.Item key={review._id}>      
                     <strong>{review.name}</strong>
                     <Rating value={review.rating} text={review.comment} />
                     <p>{review.createdAt.substring(0, 10)}</p>
-                    <p>{review.comment}</p>
+                    <p>{review.comment}</p>   {/*list  hết tất cả review ra, không có chức năng nào impact lên   */ }
                   </ListGroup.Item>
                 ))}
+                
                 <ListGroup.Item>
                   <h2 className="my-3">Write a Customer Review</h2>
                   {errorProductReview && (

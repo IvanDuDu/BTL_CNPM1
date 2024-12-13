@@ -18,7 +18,6 @@ import {
   PRODUCT_CREATE_REVIEW_REQUEST,
   PRODUCT_CREATE_REVIEW_SUCCESS,
   PRODUCT_CREATE_REVIEW_FAIL,
-  PRODUCT_CREATE_REVIEW_RESET,
 } from "../constants/productConstants";
 
 export const listProducts =
@@ -169,17 +168,17 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     });
   }
 };
-
+// action createProductReview
 export const createProductReview =
   (productId, review) => async (dispatch, getState) => {
     try {
-      dispatch({
+      dispatch({     // gửi rêquest
         type: PRODUCT_CREATE_REVIEW_REQUEST,
       });
 
       const {
         userLogin: { userInfo },
-      } = getState();
+      } = getState();       // lấy info user
 
       const config = {
         headers: {
@@ -188,7 +187,7 @@ export const createProductReview =
         },
       };
 
-      await axios.post(`/api/products/${productId}/reviews`, review, config);
+      await axios.post(`/api/products/${productId}/reviews`, review, config);    // sử dụng phương thức post  , đâm thẳng vào product/reviews
 
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,

@@ -19,4 +19,7 @@ const users = [
   },
 ]
 
+
+
+// chắc cần phải thêm trường cart cho tk này sau đó gen lại từ đầu bộ dữ liệu mới 
 export default users

@@ -1,34 +1,96 @@
 import axios from 'axios'
-import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS } from '../constants/cartConstants'
+import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SHIPPING_ADDRESS,
+  CART_FETCH_ITEMS,
+ } from '../constants/cartConstants'
 
-export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${id}`)   //lấy link trang
 
-  dispatch({   
-    type: CART_ADD_ITEM,
-    payload: {
-      product: data._id,
-      name: data.name,
-      image: data.image,
-      price: data.price,
-      countInStock: data.countInStock,
-      qty,
+ export const addToCart = (productId, qty) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState(); // Lấy thông tin người dùng từ state
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userInfo.token}`, // Xác thực bằng token
     },
-  })    // gửi gói đata
-// bình thường để lưu dũ liệu nó có 2 phương pháp : 1 là lưu vào localStorage dành cho những phương thức yêu cầu ít bộ nhớ 
-// phương pháp thứ 2 là sử dụng redux 
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))    //lưu trữ ở trong cart/cartItems
-}
+  };
+  try {
+    const { data } = await axios.post(
+      `/api/users/${userInfo._id}/cart/${productId}`, 
+      { qty }, 
+      config
+    );
 
-export const removeFromCart = (id) => (dispatch, getState) => {
+   
+    dispatch({
+      type: "CART_ADD_ITEM",
+      payload: data, 
+    });
+  } catch (error) {
+   
+    const message = error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+    dispatch({
+      type: "CART_ADD_ITEM_FAIL",
+      payload: message,
+    });
+  }
+};
+
+
+
+export const removeFromCart = (id) => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+
+  await axios.delete(`/api/users/${userInfo._id}/cart/${id}`, config); // Xóa sản phẩm khỏi giỏ hàng
+
   dispatch({
     type: CART_REMOVE_ITEM,
-    payload: id,  
-  })
+    payload: id, // Truyền ID sản phẩm cần xóa
+  });
+};
 
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))    // chức năng remove, tuy nhiên cũng chỉ là remove khi nhấn icon
-                                                                                  // cần cập nhật thêm remove khi đã thực hiện mua hàng
-}
+export const fetchCart = () => async (dispatch, getState) => {
+  const {
+    userLogin: { userInfo },
+  } = getState();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${userInfo.token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios.get(`/api/users/cart/${userInfo._id}`, config);
+    //thử sử dụng URL của phương thức khác
+    dispatch({
+      type: CART_FETCH_ITEMS,
+      payload: data, // Dữ liệu giỏ hàng từ server
+    });
+  } catch (error) {
+    dispatch({
+      type: "CART_FETCH_FAIL",
+      payload: error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message,
+    });
+  }
+};
+
+
+
+
 
 export const saveShippingAddress = (data) => (dispatch) => {
   dispatch({
