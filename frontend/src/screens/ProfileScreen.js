@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Table, Form, Button, Row, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Col, Form, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { listMyOrders ,deleteOrder} from "../actions/orderActions";
 import { Link } from "react-router-dom";
+import { deleteOrder, listMyOrders } from "../actions/orderActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 
 const ProfileScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -139,14 +139,17 @@ const ProfileScreen = ({ location, history }) => {
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
-                      order.paidAt.substring(0, 10)
+                     // <Message variant="success">Paid on {order.paidAt}</Message>
+                      // order.paidAt.substring(0, 10)
+                      <td>{order.createdAt.substring(0, 10)}</td>
                     ) : (
                       <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
-                      order.deliveredAt.substring(0, 10)
+                      // order.deliveredAt.substring(0, 10)
+                      <td>{order.createdAt.substring(0, 10)}</td>
                     ) : (
                       <i className="fas fa-times" style={{ color: "red" }}></i>
                     )}
