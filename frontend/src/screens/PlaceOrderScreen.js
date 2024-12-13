@@ -55,9 +55,12 @@ const PlaceOrderScreen = ({ history }) => {
     );
 
     // Xóa các mặt hàng trong miniCart khỏi cart
-    miniCart.forEach(item => {
-      dispatch(removeFromCart(item.product));
-    });
+    (async () => {
+      for (const item of miniCart) {
+        await dispatch(removeFromCart(item.product._id));
+      }
+    })();
+    
   };
 
   return (
