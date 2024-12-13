@@ -1,17 +1,17 @@
 import express from "express";
-const router = express.Router();
 import {
   addOrderItems,
+  deleteOrder,
   getMyOrders,
   getOrderById,
+  getOrders,
   updateOrderToDelivered,
-  updateOrderToPaid,
- deleteOrder,
-  
+  updateOrderToPaid
 } from "../controller/orderController.js";
 import { checkAdmin, checkAuth } from "../middleware/authMiddleware.js";
+const router = express.Router();
 
-router.route("/").post(checkAuth, addOrderItems).get(checkAuth, checkAdmin,getMyOrders);
+router.route("/").post(checkAuth, addOrderItems).get(checkAuth, checkAdmin,getOrders);
 router.route('/myorders').get(checkAuth, getMyOrders);
 router.route("/:id").get(checkAuth, getOrderById)
 .delete(checkAuth,deleteOrder); 
