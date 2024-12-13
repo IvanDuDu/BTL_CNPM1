@@ -55,21 +55,29 @@ const deleteProduct = AsyncHandler(async (req, res) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = AsyncHandler(async (req, res) => {
-  const { name, price, image, brand} =
-    req.body;
+  const { name, price, image, brand, category, countInStock, description } = req.body;
+
+  if (!name || !price || !image || !brand || !category || countInStock === undefined) {
+    res.status(400);
+    throw new Error("All fields are required");
+  }
+  
   const product = new Product({
-    name: name,
-    price: price,
-    user: "639d76dcf7a638aee88a8360",
-    image: image,
-    brand: brand,
-    category: "custom",
-    countInStock: 10,
-    numReviews: 0,
-    description: "Sample description",
+    name,
+    price,
+    user: req.user._id, 
+    image,
+    brand,
+    category,
+    countInStock,
+    numReviews:0,
+    description: description || "",
   });
-  console.log("gdsas")
+
+  // Save the product to the database
   const createdProduct = await product.save();
+
+  // Respond with the created product
   res.status(201).json(createdProduct);
 });
 
@@ -141,11 +149,6 @@ const createProductReview = AsyncHandler(async (req, res) => {
 });
 
 export {
-  getProducts,
-  getProductById,
-  deleteProduct,
-  createProduct,
-  updateProduct,
-  createProductReview,
+  createProduct, createProductReview, deleteProduct, getProductById, getProducts, updateProduct
 };
 
