@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import CheckoutSteps from "../components/CheckoutSteps";
+import { Link } from "react-router-dom";
+import { removeFromCart } from '../actions/cartActions';
 import { createOrder } from "../actions/orderActions";
-import { removeFromCart } from '../actions/cartActions'
+import { updateProductStock } from "../actions/productActions";
+import CheckoutSteps from "../components/CheckoutSteps";
+import Message from "../components/Message";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -54,11 +55,15 @@ const PlaceOrderScreen = ({ history }) => {
       })
     );
 
+    miniCart.forEach((item) => {
+      dispatch(updateProductStock(item.product, item.qty));
+    });
+
     // Xóa các mặt hàng trong miniCart khỏi cart
     miniCart.forEach(item => {
       dispatch(removeFromCart(item.product));
     });
-  };
+};
 
   return (
     <>

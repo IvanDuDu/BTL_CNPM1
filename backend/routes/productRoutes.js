@@ -6,10 +6,10 @@ import {
   getProductById,
   getProducts,
   updateProduct,
-  
+  updateProductStock,
 } from "../controller/productController.js";
+import { checkAdmin, checkAuth } from "../middleware/authMiddleware.js";
 const router = express.Router();
-import { checkAuth, checkAdmin } from "../middleware/authMiddleware.js";
 
 router.route("/").get(getProducts).post(checkAuth, checkAdmin, createProduct);
 
@@ -20,5 +20,8 @@ router
   .put(checkAuth, checkAdmin, updateProduct);
 
 router.route("/:id/reviews").post(checkAuth, createProductReview);
+
+router.put("/:id/update-stock", checkAuth, updateProductStock);
+
 // review chỉ sử dụng phuognw thức post vào routes chỉ đi vào trường reviews
 export default router;

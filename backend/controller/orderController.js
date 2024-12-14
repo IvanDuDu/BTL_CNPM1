@@ -32,6 +32,17 @@ const addOrderItems = AsyncHandler(async (req, res) => {
     });
 
     const createdOrder = await order.save();
+    
+    // for(const item of orderItems){
+    //   const product = await Product.findById(item.product);
+    //   if (product) {
+    //     product.countInStock -= item.qty;
+    //     await product.save();
+    //   } else {
+    //     res.status(404);
+    //     throw new Error("Product not found");
+    //   }
+    // }
 
     res.status(201).json(createdOrder);
   }
@@ -136,14 +147,8 @@ const getOrders = AsyncHandler(async (req, res) => {
 })
 
 export {
-  addOrderItems,
-  getOrderById,
-  updateOrderToPaid,
-  updateOrderToDelivered,
-  getMyOrders,
-  getOrders,
-  deleteOrder,
-}
+  addOrderItems, deleteOrder, getMyOrders, getOrderById, getOrders, updateOrderToDelivered, updateOrderToPaid
+};
 
 
 // thêm chức năng deleteOrder vào đây lấy từ deleteProduct và deleteUser
