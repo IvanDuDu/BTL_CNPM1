@@ -270,3 +270,43 @@ export const updateUser = (user) => async (dispatch, getState) => {
     });
   }
 };
+
+
+// export const userAddItem =
+//   (productId, qty) => async (dispatch, getState) => {
+//     try {
+//       dispatch({
+//         type: CART_ADD_ITEM_REQUEST, // Gửi request để báo rằng đang xử lý
+//       });
+
+//       const {
+//         userLogin: { userInfo },
+//       } = getState(); // Lấy thông tin người dùng hiện tại từ state
+
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `Bearer ${userInfo.token}`,
+//         },
+//       };
+
+//       // Gửi yêu cầu POST tới API để thêm sản phẩm vào giỏ hàng
+//       await axios.post(
+//         `/api/cart/${productId}`,
+//         { qty }, // Dữ liệu gửi kèm
+//         config
+//       );
+
+//       dispatch({
+//         type: CART_ADD_ITEM_SUCCESS, // Dispatch thành công
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: CART_ADD_ITEM_FAIL, // Dispatch thất bại
+//         payload:
+//           error.response && error.response.data.message
+//             ? error.response.data.message
+//             : error.message,
+//       });
+//     }
+//   };

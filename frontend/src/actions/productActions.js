@@ -17,11 +17,14 @@ import {
   PRODUCT_LIST_SUCCESS,
   PRODUCT_UPDATE_FAIL,
   PRODUCT_UPDATE_REQUEST,
-  PRODUCT_UPDATE_SUCCESS
+  PRODUCT_UPDATE_STOCK_FAIL,
+  PRODUCT_UPDATE_STOCK_REQUEST,
+  PRODUCT_UPDATE_STOCK_SUCCESS,
+  PRODUCT_UPDATE_SUCCESS,
 } from "../constants/productConstants";
 
 export const listProducts =
-  (keyword = "" , pageNumber = "") =>
+  (keyword = "", pageNumber = "") =>
   async (dispatch) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -29,10 +32,6 @@ export const listProducts =
       const { data } = await axios.get(
         `/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       );
-
-      console.log("hello");
-      // console.log(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
-
       dispatch({
         type: PRODUCT_LIST_SUCCESS,
         payload: data,
@@ -99,9 +98,11 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
   }
 };
 
-export const createProduct = (productData) => async (dispatch, getState) => {
+export const createProduct = () => async (dispatch, getState) => {
   try {
-    dispatch({ type: PRODUCT_CREATE_REQUEST });
+    dispatch({
+      type: PRODUCT_CREATE_REQUEST,
+    });
 
     const {
       userLogin: { userInfo },
@@ -109,12 +110,14 @@ export const createProduct = (productData) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
-    const { data } = await axios.post(`/api/products`, productData, config);
+      // cần phải thêm phương thức truyền data
+      // data là 1 trường dữ liệu được nhập thủ công bởi admin
+      //post là phương thức gửi dữ liệu theo gói lên server , server gửi lại dữ liệu vào trong database map<label : input>
+      
+    const { data } = await axios.post(`/api/products`, {}, config);
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS,
@@ -168,17 +171,17 @@ export const updateProduct = (product) => async (dispatch, getState) => {
     });
   }
 };
-
+// action createProductReview
 export const createProductReview =
   (productId, review) => async (dispatch, getState) => {
     try {
-      dispatch({
+      dispatch({     // gửi rêquest
         type: PRODUCT_CREATE_REVIEW_REQUEST,
       });
 
       const {
         userLogin: { userInfo },
-      } = getState();
+      } = getState();       // lấy info user
 
       const config = {
         headers: {
@@ -187,7 +190,7 @@ export const createProductReview =
         },
       };
 
-      await axios.post(`/api/products/${productId}/reviews`, review, config);
+      await axios.post(`/api/products/${productId}/reviews`, review, config);    // sử dụng phương thức post  , đâm thẳng vào product/reviews
 
       dispatch({
         type: PRODUCT_CREATE_REVIEW_SUCCESS,
@@ -202,3 +205,39 @@ export const createProductReview =
       });
     }
   };
+
+//
+export const updateProductStock = (productId, qty) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: PRODUCT_UPDATE_STOCK_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `/api/products/${productId}/update-stock`,
+      { qty },
+      config
+    );
+
+    dispatch({
+      type: PRODUCT_UPDATE_STOCK_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_UPDATE_STOCK_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

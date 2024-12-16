@@ -30,3 +30,14 @@ export const USER_UPDATE_REQUEST = 'USER_UPDATE_REQUEST'
 export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS'
 export const USER_UPDATE_FAIL = 'USER_UPDATE_FAIL'
 export const USER_UPDATE_RESET = 'USER_UPDATE_RESET'
+
+// // tạo thêm 1 vài constant cho ADDCart ở đây nữa bởi vì cart được lưu ở user, routes users/{userId}/cart
+// export const USER_ADD_ITEM_REQUEST = "USER_ADD_ITEM_REQUEST";
+// export const USER_ADD_ITEM_SUCCESS = "USER_ADD_ITEM_SUCCESS";
+// export const USER_ADD_ITEM_FAIL = "USER_ADD_ITEM_FAIL";
+// export const USER_ADD_ITEM_RESET = "USER_ADD_ITEM_RESET";
+
+// export const USER_DELETE_ITEM_REQUEST = "USER_DELETE_ITEM_REQUEST";
+// export const USER_DELETE_ITEM_SUCCESS = "USER_DELETE_ITEM_SUCCESS";
+// export const USER_DELETE_ITEM_FAIL = "USER_DELETE_ITEM_FAIL";
+// export const USER_DELETE_ITEM_RESET = "USER_DELETE_ITEM_RESET";

@@ -1,51 +1,51 @@
-import React from 'react'
-import { Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
   return (
-    <Nav className='justify-content-center mb-4'>
+    <Nav className="justify-content-center mb-4 gap-3">
       <Nav.Item>
         {step1 ? (
-          <Link class = "text-decoration-none" to='/login'>
-            <Nav.Link>Sign In</Nav.Link>
+          <Link className=" text-decoration-none nav-link text-primary" to="/login">
+            Home
           </Link>
         ) : (
-          <Nav.Link disabled>Sign In</Nav.Link>
+          <span className=" nav-link text-muted">Sign In</span>
         )}
       </Nav.Item>
 
       <Nav.Item>
         {step2 ? (
-          <Link class = "text-decoration-none" to='/shipping'>
-            <Nav.Link>Shipping</Nav.Link>
+          <Link className=" text-decoration-none nav-link text-primary" to="/shipping">
+            Shipping
           </Link>
         ) : (
-          <Nav.Link disabled>Shipping</Nav.Link>
+          <span className=" nav-link text-muted">Shipping</span>
         )}
       </Nav.Item>
 
       <Nav.Item>
         {step3 ? (
-          <Link class = "text-decoration-none"  to='/payment'>
-            <Nav.Link>Payment</Nav.Link>
+          <Link className=" text-decoration-none nav-link text-primary" to="/payment">
+            Payment
           </Link>
         ) : (
-          <Nav.Link disabled>Payment</Nav.Link>
+          <span className=" nav-link text-muted">Payment</span>
         )}
       </Nav.Item>
 
       <Nav.Item>
         {step4 ? (
-          <Link class = "text-decoration-none"  to='/placeorder'>
-            <Nav.Link>Place Order</Nav.Link>
+          <Link className=" text-decoration-none nav-link text-primary" to="/placeorder">
+            Place Order
           </Link>
         ) : (
-          <Nav.Link disabled>Place Order</Nav.Link>
+          <span className=" nav-link text-muted">Place Order</span>
         )}
       </Nav.Item>
     </Nav>
-  )
-}
+  );
+};
 
-export default CheckoutSteps
+export default CheckoutSteps;

@@ -54,15 +54,15 @@ const orderSchema = mongoose.Schema(
     isPaid: {
       type: Boolean,
       required: true,
-      default: false,
+      default: true,
     },
     paidAt: {
-      type: Date,
+      type: Date, 
     },
     isDelivered: {
       type: Boolean,
       required: true,
-      default: false,
+      default:  true,        //đã sửa default thành true
     },
     deliveredAt: {
       type: Date,
@@ -76,3 +76,12 @@ const orderSchema = mongoose.Schema(
 const Order = mongoose.model('Order', orderSchema)
 
 export default Order
+
+
+// lỗi sinh ra khi sửa isPaid default = true thì  trang  profile không hiện hình== đang ở loading --> ko load được order
+// sinh ra lỗi không nhả đơn : đơn thực hiện rồi vẫn không thoát được đơn đi và chồng lên đơn trước 
+// chỉ cần có 1 đơn isPaid mà hiện lại model cũ thì vẫn không load được trang order
+
+// chức năng cart và order vẫn đang còn nhiều xung đột 
+//lí do : logic của các trang này đang hoạt động không ổn định
+// cần giải quyết ở cart action và orderAction

@@ -25,8 +25,8 @@ function App() {
   return (
     <Router>
       <Header />
-      <main className="py-3" style={{ height: "80vh" }}>
-        <Container>
+      <main className="py-3 App">
+      <Container>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/payment" component={PaymentScreen} />
