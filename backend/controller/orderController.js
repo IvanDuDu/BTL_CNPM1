@@ -32,10 +32,37 @@ const addOrderItems = AsyncHandler(async (req, res) => {
     });
 
     const createdOrder = await order.save();
+    
+    // for(const item of orderItems){
+    //   const product = await Product.findById(item.product);
+    //   if (product) {
+    //     product.countInStock -= item.qty;
+    //     await product.save();
+    //   } else {
+    //     res.status(404);
+    //     throw new Error("Product not found");
+    //   }
+    // }
 
     res.status(201).json(createdOrder);
   }
 });
+
+
+
+// thêm deleteOrder
+const deleteOrder = AsyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    await order.remove();
+    res.json({ message: "Order removed" });
+  } else {
+    res.status(404);
+    throw new Error("Order not found");
+  }
+});
+
 
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
@@ -120,10 +147,10 @@ const getOrders = AsyncHandler(async (req, res) => {
 })
 
 export {
-  addOrderItems,
-  getOrderById,
-  updateOrderToPaid,
-  updateOrderToDelivered,
-  getMyOrders,
-  getOrders,
-}
+  addOrderItems, deleteOrder, getMyOrders, getOrderById, getOrders, updateOrderToDelivered, updateOrderToPaid
+};
+
+
+// thêm chức năng deleteOrder vào đây lấy từ deleteProduct và deleteUser
+// Kiểm tra chức năng tạo order từ phía user để tạo điều kiện kiểm tra cho deleteOrder  
+//có updateOrderToPaid và updateOrderToDelivered nhưng chưa được sử dụng

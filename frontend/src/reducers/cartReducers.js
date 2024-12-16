@@ -3,6 +3,7 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
+  CART_FETCH_ITEMS,
 } from "../constants/cartConstants";
 
 export const cartReducer = (
@@ -12,9 +13,9 @@ export const cartReducer = (
   switch (action.type) {
     case CART_ADD_ITEM:
       const item = action.payload;
-
+    
       const existItem = state.cartItems.find((x) => x.product === item.product);
-
+    
       if (existItem) {
         return {
           ...state,
@@ -33,6 +34,9 @@ export const cartReducer = (
         ...state,
         cartItems: state.cartItems.filter((x) => x.product !== action.payload),
       };
+      case CART_FETCH_ITEMS:
+        return { ...state, cartItems: action.payload };
+
     case CART_SAVE_SHIPPING_ADDRESS:
       return {
         ...state,
@@ -47,3 +51,4 @@ export const cartReducer = (
       return state;
   }
 };
+// add , remove, load

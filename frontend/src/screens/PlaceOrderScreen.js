@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Button, Card, Col, Image, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import Message from "../components/Message";
-import CheckoutSteps from "../components/CheckoutSteps";
+import { Link } from "react-router-dom";
+import { removeFromCart } from '../actions/cartActions';
 import { createOrder } from "../actions/orderActions";
+import { updateProductStock } from "../actions/productActions";
+import CheckoutSteps from "../components/CheckoutSteps";
+import Message from "../components/Message";
 
-const PlaceOrderScreen = ({history}) => {
+const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
+
+  // Lấy cart từ Redux store
   const cart = useSelector((state) => state.cart);
+
+  // Lấy miniCart từ localStorage, nếu không có thì dùng cart.cartItems
+  const miniCart = JSON.parse(localStorage.getItem('miniCart')) || cart.cartItems;
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
@@ -17,37 +24,48 @@ const PlaceOrderScreen = ({history}) => {
     if (success) {
       history.push(`/order/${order._id}`);
     }
-    // eslint-disable-next-line
   }, [history, success]);
 
-  //   Calculate prices
+  // Tính giá
   const addDecimals = (num) => {
     return (Math.round(num * 100) / 100).toFixed(2);
   };
 
-  cart.itemsPrice = addDecimals(
-    cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+  const itemsPrice = addDecimals(
+    miniCart.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
-  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)));
-  cart.totalPrice = (
-    Number(cart.itemsPrice) +
-    Number(cart.shippingPrice) +
-    Number(cart.taxPrice)
+  const shippingPrice = addDecimals(itemsPrice > 100 ? 0 : 100);
+  const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
+  const totalPrice = (
+    Number(itemsPrice) +
+    Number(shippingPrice) +
+    Number(taxPrice)
   ).toFixed(2);
 
   const placeOrderHandler = () => {
     dispatch(
       createOrder({
-        orderItems: cart.cartItems,
+        orderItems: miniCart,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
       })
     );
+
+    miniCart.forEach((item) => {
+      dispatch(updateProductStock(item.product._id, item.qty));
+    });
+
+    // Xóa các mặt hàng trong miniCart khỏi cart
+    (async () => {
+      for (const item of miniCart) {
+        await dispatch(removeFromCart(item.product._id));
+      }
+    })();
+    
   };
 
   return (
@@ -74,11 +92,11 @@ const PlaceOrderScreen = ({history}) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
+              {miniCart.length === 0 ? (
                 <Message>Your cart is empty</Message>
               ) : (
                 <ListGroup variant="flush">
-                  {cart.cartItems.map((item, index) => (
+                  {miniCart.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
                         <Col md={1}>
@@ -90,7 +108,7 @@ const PlaceOrderScreen = ({history}) => {
                           />
                         </Col>
                         <Col>
-                          <Link class = "text-secondary text-decoration-none" to={`/product/${item.product}`}>
+                          <Link class="text-secondary text-decoration-none" to={`/product/${item.product}`}>
                             {item.name}
                           </Link>
                         </Col>
@@ -114,25 +132,25 @@ const PlaceOrderScreen = ({history}) => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col>${itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Shipping</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col>${shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Tax</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col>${taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
                   <Col>Total</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col>${totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
@@ -142,7 +160,7 @@ const PlaceOrderScreen = ({history}) => {
                 <Button
                   type="button"
                   className="btn-block"
-                  disabled={cart.cartItems === 0}
+                  disabled={miniCart.length === 0}
                   onClick={placeOrderHandler}
                 >
                   Place Order
