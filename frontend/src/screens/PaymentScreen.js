@@ -33,8 +33,8 @@ const PaymentScreen = ({ history }) => {
           <Col>
             <Form.Check 
               type='radio'
-              label='PayPal or Credit Card'
-              id='PayPal'
+              label='Credit Card'
+              id='CreditCard'
               name='paymentMethod'
               value='PayPal'
               checked
@@ -42,10 +42,10 @@ const PaymentScreen = ({ history }) => {
             ></Form.Check>
             <Form.Check
               type='radio'
-              label='Stripe'
-              id='Stripe'
+              label='COD'
+              id='COD'
               name='paymentMethod'
-              value='Stripe'
+              value='COD'
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
 

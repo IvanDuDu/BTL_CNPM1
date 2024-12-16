@@ -148,6 +148,25 @@ const createProductReview = AsyncHandler(async (req, res) => {
   }
 });
 
+export const updateProductStock = AsyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    product.countInStock -= req.body.qty;
+
+    if (product.countInStock < 0) {
+      res.status(400);
+      throw new Error(`${product.name} is out of stock`);
+    }
+
+    const updatedProduct = await product.save();
+    res.json(updatedProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
 export {
   createProduct, createProductReview, deleteProduct, getProductById, getProducts, updateProduct
 };
