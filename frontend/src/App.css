@@ -1,20 +1,34 @@
-.App{
-    margin: 0;
-    height: 100vh;
-    width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.App {
+  margin: 0;
+  height: 1000%;
+  /* height: 100%; */
+  width: 100%;
+  background-color: var(--white-color); 
+  position: relative;
+  padding: 0;
+  margin-top: 90px;
 }
+
 .customImage{
     object-fit: cover;
 }
 
 .product-card {
     transition: transform 0.3s ease-in-out;
+    font-family: var(--secondary_font);
+    background-color: var(--white-color);
   }
   
   .product-card:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
     box-shadow: 0 0 10px 0 rgba(19, 59, 159, 0.2);
+  }
 
+  .product-card img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 10px 0 rgba(19, 59, 159, 0.2);
   }
   
   .product-card img {
@@ -31,3 +45,70 @@
     flex-wrap: nowrap !important;
   }
   
+
+  .markazi-text {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+  :root {
+    --primary_color: #001f54;
+    --secondary_color: #034078;
+    --third_color: #1282a2;
+    --black-color: #0a1128;
+    --white-color: #fefcfb;
+    --primary_font:  "markazi-text";
+    --secondary_font: "roboto-medium";
+  }
+
+  .btn-primary {
+    background-color: var(--third_color);
+    border-color: var(--third_color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #407380;
+    border-color: #407380;
+  }
+
+  .btn-success{
+    background-color: #4f8c9c;
+    border-color: #4f8c9c;
+  }
+  .btn-success:hover {
+    background-color: #407380;
+    border-color: #407380;
+  }
+  
+  /* Container styling */
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+/* Search input box */
+.search-input {
+  width: 200px; /* Initial width */
+  transition: width 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* When the input is focused or hovered */
+.search-input:focus,
+.search-input:hover {
+  width: 300px; /* Expanded width */
+}
+
+
+.product {
+
+}

@@ -31,7 +31,7 @@ function HomeScreen({ match }) {
   };
 
   return (
-    <>
+    <div>
       <Meta />
       <Row className="mb-4">
         <Col md={4}>
@@ -71,7 +71,7 @@ function HomeScreen({ match }) {
           <Paginate pages={pages} page={page} keyword={keyword} />
         </>
       )}
-    </>
+    </div>
   );
 }
 

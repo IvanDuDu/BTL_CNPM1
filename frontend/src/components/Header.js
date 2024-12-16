@@ -16,77 +16,77 @@ const Header = ({ history }) => {
     dispatch(logout());
     history.push("/login");
   };
-  return (
-    <header>
-      <Navbar style={{backgroundColor: '#2e3192'}} data-bs-theme="light" expand="lg" collapseOnSelect>
-        <Container fluid class="d-flex">
-          <Link class="text-decoration-none " to="/">
-            <Navbar.Brand className="text-light fs-1 mx-4 fw-bolder">
-              PhuongFourth
-            </Navbar.Brand>
-          </Link>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color: "transparent",border: "1px solid black"}}/>
-          <Navbar.Collapse id="basic-navbar-nav" style={{ justifyContent: "flex-end" }}>
 
+  return (
+    <header className="header solid">
+      <Navbar
+        className="fixed-top p-3"
+        collapseOnSelect
+        expand="lg"
+        style={{
+          backgroundColor: "#0a1128", // Solid color for the header
+        }}
+      >
+        <Container fluid className="d-flex align-items-center">
+          {/* Brand Logo */}
+          <Link to="/" className="navbar-brand text-light fs-3 fw-bold me-5">
+            PhuongFourth
+          </Link>
+
+          {/* SearchBox Component */}
+          <div className="d-none d-lg-block flex-grow-1">
             <Route render={({ history }) => <SearchBox history={history} />} />
-            <Nav
-              className="ml-auto my-2 my-lg-0"
-              style={{ maxHeight: "80px" }}
-              navbarScroll
-            >
-              <Link class="text-decoration-none" to= {userInfo ? "/cart" : "/login"}>
-                <Nav.Link href="/cart" className="text-light">
-                  <i
-                    className="fas fa-shopping-cart"
-                    style={{ margin: "2px", color: "#FFF" }}
-                  ></i>{" "}
-                  Cart
-                </Nav.Link>
+          </div>
+
+          {/* Navbar Toggle for Mobile */}
+          <Navbar.Toggle aria-controls="navbar-nav" />
+
+          {/* Right-aligned Navigation */}
+          <Navbar.Collapse id="navbar-nav" className="justify-content-end">
+            <Nav className="align-items-center">
+              {/* Cart Link */}
+              <Link to={userInfo ? "/cart" : "/login"} className="nav-link text-light">
+                <i className="fas fa-shopping-cart"></i> Cart
               </Link>
 
+              {/* User Links */}
               {userInfo ? (
-                
-                <NavDropdown title={userInfo.name} id="username" >
-                  <NavDropdown.Item href="/profile" >Profile</NavDropdown.Item>
+                <NavDropdown
+                  title={<span className="text-light">{userInfo.name}</span>}
+                  id="username"
+                  className="text-light"
+                >
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <Link class="text-decoration-none " to="/login">
-                  <Nav.Link href="/login" style={{color:"#FFF"}}>
-                    <i
-                      className="fas fa-user"
-                      style={{ margin: "2px", color: "#FFF" }}
-                    ></i>{" "}
-                    Sign In
-                  </Nav.Link>
+                <Link to="/login" className="nav-link text-light">
+                  <i className="fas fa-user"></i> Sign In
                 </Link>
               )}
 
+              {/* Admin Links */}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title="Admin" id="adminmenu">
-                  <Link class="text-decoration-none" to="/admin/userlist">
-                    <NavDropdown.Item class="ml-3" href="/admin/userList">
-                      Users
-                    </NavDropdown.Item>
+                <NavDropdown
+                  title={<span className="text-light">Admin</span>}
+                  id="adminmenu"
+                  className="text-light"
+                >
+                  <Link to="/admin/userlist" className="dropdown-item">
+                    Users
                   </Link>
-                  <Link class="text-decoration-none" to="/admin/productlist">
-                    <NavDropdown.Item href="/admin/productlist">
-                      Products
-                    </NavDropdown.Item>
+                  <Link to="/admin/productlist" className="dropdown-item">
+                    Products
                   </Link>
-                  <Link class="text-decoration-none" to="/admin/orderlist">
-                    <NavDropdown.Item href="/admin/productlist">
-                      Orders
-                    </NavDropdown.Item>
+                  <Link to="/admin/orderlist" className="dropdown-item">
+                    Orders
                   </Link>
                 </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>
-
-          {/* </Container> */}
         </Container>
       </Navbar>
     </header>

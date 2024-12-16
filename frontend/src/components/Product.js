@@ -22,7 +22,7 @@ function Product({ product }) {
             }}
           />
         </div>
-        <Card.Body>
+        <Card.Body className="product-card">
           <Card.Title as="div" style={{ minHeight: "40%" }}>
             <strong className="text-dark font-size-4">{product.name}</strong>
           </Card.Title>

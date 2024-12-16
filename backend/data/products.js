@@ -1,77 +1,10 @@
 const products = [
-  {
-    name: "Airpods Wireless Bluetooth Headphones",
-    image: "/images/airpods.jpg",
-    description:
-      "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
-    brand: "Apple",
-    category: "Electronics",
-    price: 89.99,
+  
+  
+  
 
-    countInStock: 10,
-    rating: 4.5,
-    numReviews: 12,
-  },
-  {
-    name: "iPhone 11 Pro 256GB Memory",
-    image: "/images/phone.jpg",
-    description:
-      "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
-    brand: "Apple",
-    category: "Electronics",
-    price: 599.99,
-    countInStock: 7,
-    rating: 4.0,
-    numReviews: 8,
-  },
-  {
-    name: "Cannon EOS 80D DSLR Camera",
-    image: "/images/camera.jpg",
-    description:
-      "Characterized by versatile imaging specs, the Canon EOS 80D further clarifies itself using a pair of robust focusing systems and an intuitive design",
-    brand: "Cannon",
-    category: "Electronics",
-    price: 929.99,
-    countInStock: 5,
-    rating: 3,
-    numReviews: 12,
-  },
-  {
-    name: "Sony Playstation 4 Pro White Version",
-    image: "/images/playstation.jpg",
-    description:
-      "The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music",
-    brand: "Sony",
-    category: "Electronics",
-    price: 399.99,
-    countInStock: 11,
-    rating: 5,
-    numReviews: 12,
-  },
-  {
-    name: "Logitech G-Series Gaming Mouse",
-    image: "/images/mouse.jpg",
-    description:
-      "Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience",
-    brand: "Logitech",
-    category: "Electronics",
-    price: 49.99,
-    countInStock: 2,
-    rating: 3.5,
-    numReviews: 10,
-  },
-  {
-    name: "Amazon Echo Dot 3rd Generation",
-    image: "/images/alexa.jpg",
-    description:
-      "Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space",
-    brand: "Amazon",
-    category: "Electronics",
-    price: 29.99,
-    countInStock: 3,
-    rating: 4,
-    numReviews: 12,
-  },
+ 
+  
   {
     name: "Túi Xách Công Sở Nam",
     image: "/images/sample1.jpg",
@@ -216,17 +149,7 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
-    {
-      name: "Tai nghe AirPods",
-      image: "/images/airpods.jpg",
-      description: "Tai nghe AirPods chính hãng, âm thanh chất lượng cao, thiết kế hiện đại, phù hợp cho nhu cầu nghe nhạc và gọi thoại hằng ngày.",
-      brand: "Apple",
-      category: "Phụ kiện công nghệ",
-      price: 22.28,
-      countInStock: 16,
-      rating: 3.8,
-      numReviews: 15,
-    },
+   
     {
       name: "Áo blazer nam Lacoste",
       image: "/images/ao-blazer-nam-lacoste-men-s-stretch-wool-twill-in-marine-blue-size-50-64786d1fc443f-01062023170415.jpg",
@@ -260,17 +183,7 @@ const products = [
       rating: 5,
       numReviews: 19,
     },
-    {
-      name: "Máy ảnh",
-      image: "/images/camera.jpg",
-      description: "Máy ảnh kỹ thuật số với chất lượng hình ảnh vượt trội, phù hợp cho các nhiếp ảnh gia chuyên nghiệp và người yêu thích chụp ảnh.",
-      brand: "Canon",
-      category: "Thiết bị điện tử",
-      price: 84.5,
-      countInStock: 15,
-      rating: 4,
-      numReviews: 0,
-    },
+    
     {
       name: "Dép MLB Chunky",
       image: "/images/dep-mlb-chunky-sandals-resort-boston-red-sox-3asdsd223-43nyl-mau-xanh-navy-62de4e0325e61-25072022150211.jpg",
@@ -414,17 +327,7 @@ const products = [
       rating: 3.6,
       numReviews: 7,
     },
-    {
-      name: "Chuột máy tính",
-      image: "/images/mouse.jpg",
-      description: "Chuột máy tính không dây hiện đại, thiết kế nhỏ gọn, phù hợp cho làm việc và học tập.",
-      brand: "Generic",
-      category: "Thiết bị công nghệ",
-      price: 5.31,
-      countInStock: 20,
-      rating: 4,
-      numReviews: 1,
-    },
+   
     {
       name: "Giày thể thao Adidas",
       image: "/images/giay-the-thao-adidas-advantage-base-court-lifestyle-shoes-gw2063-mau-trang-size-40-5-63bb849579f2f-09012023100557.jpg",
@@ -480,17 +383,7 @@ const products = [
       rating: 3,
       numReviews: 10,
     },
-    {
-      name: "Chuột máy tính",
-      image: "/images/mouse.jpg",
-      description: "Chuột máy tính chất lượng cao, thiết kế nhỏ gọn và bền bỉ, phù hợp cho công việc và giải trí.",
-      brand: "Thiết bị máy tính",
-      category: "Thiết bị công nghệ",
-      price: 5.31,
-      countInStock: 20,
-      rating: 4.8,
-      numReviews: 11,
-    },
+   
     {
       name: "Mũ Gucci GG Supreme",
       image: "/images/mu-gucci-casquette-en-toile-gg-supreme-mau-den-xam-size-l-642aa3e548ddc-03042023170109.jpg",
@@ -568,39 +461,9 @@ const products = [
       rating: 4.6,
       numReviews: 1,
     },
-    {
-      name: "Điện thoại",
-      image: "/images/phone.jpg",
-      description: "Điện thoại chất lượng cao với thiết kế hiện đại và nhiều tính năng thông minh.",
-      brand: "Thiết bị công nghệ",
-      category: "Thiết bị công nghệ",
-      price: 81.79,
-      countInStock: 58,
-      rating: 4.4,
-      numReviews: 2,
-    },
-    {
-      name: "PlayStation",
-      image: "/images/playstation.jpg",
-      description: "Máy chơi game PlayStation chất lượng cao, mang đến trải nghiệm giải trí tuyệt vời.",
-      brand: "Sony",
-      category: "Thiết bị công nghệ",
-      price: 23.77,
-      countInStock: 77,
-      rating: 3.2,
-      numReviews: 14,
-    },
-    {
-      name: "Mẫu thử",
-      image: "/images/sample.jpg",
-      description: "Mẫu thử sản phẩm chất lượng cao, mang lại cảm giác trải nghiệm chân thực.",
-      brand: "Sample",
-      category: "Hàng mẫu",
-      price: 78.53,
-      countInStock: 62,
-      rating: 5,
-      numReviews: 17,
-    },
+    
+    
+    
     {
       name: "Túi Xách Công Sở Nam",
       image: "/images/sample1.jpg",

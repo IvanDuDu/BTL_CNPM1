@@ -11,7 +11,7 @@ import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 dotenv.config();
-const PORT =  3000;
+const PORT =  5000;
 connectDB();
 
 if (process.env.NODE_ENV === "development") {

@@ -54,6 +54,9 @@ const ProductScreen = ({ history, match }) => {
   const buyNowHandler = () => {
     dispatch(addToCart(match.params.id, qty));
     history.push("/cart");
+    // localStorage.setItem("miniCart", JSON.stringify(product));
+    // history.push("/shipping");
+
   };
 
   const submitHandler = (e) => {
@@ -77,7 +80,7 @@ const ProductScreen = ({ history, match }) => {
             <Col md={6}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  <h3>{product.name}</h3>
+                  <h3 className={"product-card"}>{product.name}</h3>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
