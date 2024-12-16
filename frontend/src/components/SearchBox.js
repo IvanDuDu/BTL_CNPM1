@@ -1,32 +1,32 @@
-import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import React, { useState } from 'react';
+import { Form, Button } from 'react-bootstrap';
 
 const SearchBox = ({ history }) => {
-  const [keyword, setKeyword] = useState('')
+  const [keyword, setKeyword] = useState('');
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (keyword.trim()) {
-      history.push(`/search/${keyword}`)
+      history.push(`/search/${keyword}`);
     } else {
-      history.push('/')
+      history.push('/');
     }
-  }
+  };
 
   return (
-    <Form className='d-inline-flex ml-4 my-2' onSubmit={submitHandler} inline>
-      <Form.Control 
-        type='text'
-        name='q'
+    <Form className="search-box d-inline-flex ml-4 my-2" onSubmit={submitHandler} inline>
+      <Form.Control
+        type="text"
+        name="q"
         onChange={(e) => setKeyword(e.target.value)}
-        placeholder='Search Products'
-        className='mr-sm-2'
+        placeholder="Search Products"
+        className="search-input"
       ></Form.Control>
-      <Button type='submit' variant="primary" className=''>
-        Search
+      <Button type="submit" variant="primary" className="ms-2">
+        <i className="fa-solid fa-magnifying-glass"></i>
       </Button>
     </Form>
-  )
-}
+  );
+};
 
-export default SearchBox
+export default SearchBox;

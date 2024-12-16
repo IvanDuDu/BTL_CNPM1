@@ -1,24 +1,38 @@
-.nav-link{
-    color: white !important;
+/* General styles for navigation links */
+.nav-link {
+  color: white;
 }
 
-.brand_logo{
-    font-family: var(--primary_font);
+/* Brand logo font styling */
+.brand_logo {
+  font-family: var(--primary_font);
 }
 
+/* Header styles */
 .header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    transition: transform 0.3s ease-in-out;
-    z-index: 100;
-  }
-  
-  .header.hide {
-    transform: translateY(-100%);
-  }
-  
-  .header.show {
-    transform: translateY(0);
-  }
-  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  z-index: 100;
+  background-color: var(--primary_color);
+}
+
+
+.header.transparent {
+  background-color: transparent;
+}
+
+.header.solid {
+  background-color: var(--black-color); /* Adjust this to your desired color */
+}
+
+/* Header animation for hiding and showing */
+.header.hide {
+  transform: translateY(-100%);
+}
+
+.header.show {
+  transform: translateY(0);
+}
+

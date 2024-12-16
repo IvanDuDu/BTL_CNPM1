@@ -1,23 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+MX+Guides&display=swap');
 
-.App{
-    margin: 0;
-    height: 100vh;
-    width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:slnt,wght@-1,100..1000&family=Markazi+Text:wght@400..700&family=Marvel:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+.App {
+  margin: 0;
+  height: 1000%;
+  /* height: 100%; */
+  width: 100%;
+  background-color: var(--white-color); 
+  /* background-color: #1282a2; */
+  position: relative;
+  padding: 0;
+  margin-top: 90px;
+  /* font-family: var(--primary_font); */
 }
 
 .customImage{
     object-fit: cover;
 }
 
+.brand-logo{
+  font-family: var(--secondary_color);
+}
+
 .product-card {
-    transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* font-family: var(--primary_font); */
+    background-color: var(--white-color);
   }
   
   .product-card:hover {
-    transform: scale(1.02);
+    transform: translateY(-5px); /* Slightly elevate the card */
+    transform: scale(1.01);
     box-shadow: 0 0 10px 0 rgba(19, 59, 159, 0.2);
+  }
 
+  .product-card img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 10px 0 rgba(19, 59, 159, 0.2);
   }
   
   .product-card img {
@@ -34,16 +55,133 @@
     flex-wrap: nowrap !important;
   }
   
-  .playwrite-mx-guides-regular {
-    font-family: "Playwrite MX Guides", cursive;
-    font-weight: 400;
+
+  .markazi-text {
+    font-family: "Markazi Text", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
     font-style: normal;
   }
   
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
   :root {
-    --primary_color: #201E43;
-    --secondary_color: #134b70;
-    --third_color: #508C9B;
-    --primary_font:  "Playwrite MX Guides";
+    --primary_color: #001f54;
+    --secondary_color: #034078;
+    --third_color: #1282a2;
+    --black-color: #0a1128;
+    --white-color: #fefcfb;
+    --primary_font: "roboto-regular"  ;
+    --secondary_font: "markazi-text" ;
   }
+
+  .btn-primary {
+    background-color: var(--third_color);
+    border-color: var(--third_color);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #407380;
+    border-color: #407380;
+  }
+
+  .btn-success{
+    background-color: #4f8c9c;
+    border-color: #4f8c9c;
+  }
+  .btn-success:hover {
+    background-color: #407380;
+    border-color: #407380;
+  }
+
+  .btn-secondary {
+    background-color: var(--black-color);
+    border-color: (var(--black-color));
+  }
+  .btn-secondary:hover {
+    background-color: #4f4c4c;
+    border-color: #4f4c4c;
+  }
+
+  .btn-light{
+    background-color: #e8e6e6;
+  }
+
+  
+  /* Container styling */
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+/* Search input box */
+.search-input {
+  width: 200px; /* Initial width */
+  transition: width 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* When the input is focused or hovered */
+.search-input:focus,
+.search-input:hover {
+  width: 300px; /* Expanded width */
+}
+
+.custom-pagination .page-item .page-link {
+  background-color: var(--third_color); /* Background color */
+  color: white; /* Text color */
+  border-color: var(--third_color); /* Border color */
+}
+
+.custom-pagination .page-item.active .page-link {
+  background-color: var(--black-color); /* Active background color */
+  color: white; /* Active text color */
+  border-color: var(--black-color); /* Active border color */
+}
+
+.custom-pagination .page-item .page-link:hover {
+  background-color: #105f7a; /* Hover color */
+  color: white; /* Hover text color */
+}
+
+.btn-block:disabled{
+  background-color: var(--third_color);
+  border-color:var(--third_color) ;
+}
+
+/* Modify all alerts */
+
+.alert-success {
+  background-color: var(--third_color); /* Light gray background */
+  color: var(--white-color);              /* Dark text */
+  border: 1px solid #ccc;   /* Light border */
+  border-radius: 8px;       /* Rounded corners */
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.text-primary {
+  color: var(--secondary_color) !important;
+}
+
+.alert-primary {
+  background-color: var(--black-color); /* Light gray background */
+  color: var(--white-color);              /* Dark text */
+  border: 1px solid #ccc;   /* Light border */
+  border-radius: 8px;       /* Rounded corners */
+  padding: 15px;
+  margin-top: 25px;
+}
+
+
+
