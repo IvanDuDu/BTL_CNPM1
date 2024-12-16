@@ -30,6 +30,7 @@ const LoginScreen = ({ location, history }) => {
   }
 
   return (
+    // <div className='App'>
     <FormContainer>
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
@@ -69,6 +70,7 @@ const LoginScreen = ({ location, history }) => {
         </Col>
       </Row>
     </FormContainer>
+    // </div>
   )
 }
 
