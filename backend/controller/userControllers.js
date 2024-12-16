@@ -204,7 +204,7 @@ const addItemToCart = AsyncHandler(async (req, res) => {
     name: product.name,
     price: product.price,
     image: product.image,
-    qty: qty || 1,  // Mặc định là 1 nếu không có qty
+    qty: qty ,  // Mặc định là 1 nếu không có qty
     stock: product.countInStock,
   };
 

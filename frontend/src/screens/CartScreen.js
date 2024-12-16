@@ -87,7 +87,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
                   <Col md={3}>
-                    <Link className="text-decoration-none text-dark" to={`/product/${item.product}`}>
+                    <Link class="text-decoration-none text-dark"  /*to={`/product/${item.product._id}`}*/  >
                       {item.name}
                     </Link>
                   </Col>
@@ -98,7 +98,7 @@ const CartScreen = ({ match, location, history }) => {
                       value={item.qty}
                       onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
                     >
-                      {[...Array(item.countInStock).keys()].map((x) => (
+                      {[...Array((item.countInStock)).keys()].map((x) => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>

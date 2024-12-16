@@ -22,7 +22,7 @@ const Header = ({ history }) => {
         <Container fluid class="d-flex">
           <Link class="text-decoration-none " to="/">
             <Navbar.Brand className="text-light fs-1 mx-4 fw-bolder">
-              G-Shop
+              PhuongFourth
             </Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" style={{color: "transparent",border: "1px solid black"}}/>
