@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Button, Card, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, ListGroup, Image, Form, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { addToCart, fetchCart, removeFromCart } from "../actions/cartActions";
 import Message from "../components/Message";
-import { addToCart, removeFromCart,fetchCart } from "../actions/cartActions";
 
 const CartScreen = ({ match, location, history }) => {
   const productId = match.params.productId;
@@ -65,10 +65,14 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <Row>
       <Col md={8}>
+      <Link to="/" className="btn btn-light my-2">
+          Go Back  
+      </Link>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to="/">Go Back</Link>
+            Your cart is empty 
+            {/* <Link to="/" className="text-decoration-none">Go Back</Link> */}
           </Message>
         ) : (
           <ListGroup variant="flush">

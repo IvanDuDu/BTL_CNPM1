@@ -8,7 +8,13 @@ function Product({ product }) {
     <Link className="text-decoration-none" to={`/product/${product._id}`}>
       <Card
         className="product-card my-2"
-        style={{ width: "auto", height: "100%" }}
+        style={{
+          width: "auto",
+          height: "100%",
+          borderRadius: "8px", // Rounded corners
+          boxShadow: "0 2px 3px rgba(0, 0, 0, 0.2)", // Custom shadow
+          overflow: "hidden", // Ensures content fits within the rounded corners
+        }}
       >
         {/* Set a fixed size for the image */}
         <div style={{ width: "100%", height: "200px", overflow: "hidden" }}>

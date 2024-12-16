@@ -1,4 +1,7 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:slnt,wght@-1,100..1000&family=Markazi+Text:wght@400..700&family=Marvel:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 .App {
   margin: 0;
@@ -6,22 +9,29 @@
   /* height: 100%; */
   width: 100%;
   background-color: var(--white-color); 
+  /* background-color: #1282a2; */
   position: relative;
   padding: 0;
   margin-top: 90px;
+  /* font-family: var(--primary_font); */
 }
 
 .customImage{
     object-fit: cover;
 }
 
+.brand-logo{
+  font-family: var(--secondary_color);
+}
+
 .product-card {
-    transition: transform 0.3s ease-in-out;
-    font-family: var(--secondary_font);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* font-family: var(--primary_font); */
     background-color: var(--white-color);
   }
   
   .product-card:hover {
+    transform: translateY(-5px); /* Slightly elevate the card */
     transform: scale(1.01);
     box-shadow: 0 0 10px 0 rgba(19, 59, 159, 0.2);
   }
@@ -59,6 +69,11 @@
     font-style: normal;
   }
   
+  .roboto-regular {
+    font-family: "Roboto", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
   :root {
     --primary_color: #001f54;
@@ -66,8 +81,8 @@
     --third_color: #1282a2;
     --black-color: #0a1128;
     --white-color: #fefcfb;
-    --primary_font:  "markazi-text";
-    --secondary_font: "roboto-medium";
+    --primary_font: "roboto-regular"  ;
+    --secondary_font: "markazi-text" ;
   }
 
   .btn-primary {
@@ -89,6 +104,20 @@
     background-color: #407380;
     border-color: #407380;
   }
+
+  .btn-secondary {
+    background-color: var(--black-color);
+    border-color: (var(--black-color));
+  }
+  .btn-secondary:hover {
+    background-color: #4f4c4c;
+    border-color: #4f4c4c;
+  }
+
+  .btn-light{
+    background-color: #e8e6e6;
+  }
+
   
   /* Container styling */
 .search-box {
@@ -108,7 +137,51 @@
   width: 300px; /* Expanded width */
 }
 
-
-.product {
-
+.custom-pagination .page-item .page-link {
+  background-color: var(--third_color); /* Background color */
+  color: white; /* Text color */
+  border-color: var(--third_color); /* Border color */
 }
+
+.custom-pagination .page-item.active .page-link {
+  background-color: var(--black-color); /* Active background color */
+  color: white; /* Active text color */
+  border-color: var(--black-color); /* Active border color */
+}
+
+.custom-pagination .page-item .page-link:hover {
+  background-color: #105f7a; /* Hover color */
+  color: white; /* Hover text color */
+}
+
+.btn-block:disabled{
+  background-color: var(--third_color);
+  border-color:var(--third_color) ;
+}
+
+/* Modify all alerts */
+
+.alert-success {
+  background-color: var(--third_color); /* Light gray background */
+  color: var(--white-color);              /* Dark text */
+  border: 1px solid #ccc;   /* Light border */
+  border-radius: 8px;       /* Rounded corners */
+  padding: 15px;
+  margin-top: 25px;
+}
+
+.text-primary {
+  color: var(--secondary_color) !important;
+}
+
+.alert-primary {
+  background-color: var(--black-color); /* Light gray background */
+  color: var(--white-color);              /* Dark text */
+  border: 1px solid #ccc;   /* Light border */
+  border-radius: 8px;       /* Rounded corners */
+  padding: 15px;
+  margin-top: 25px;
+}
+
+
+

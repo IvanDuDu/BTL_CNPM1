@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Form, Image, ListGroup, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Card, Image, Button, Form, ListGroup,Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { listProductDetails, listProducts, createProductReview } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
-import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
+import { createProductReview, listProductDetails, listProducts } from "../actions/productActions";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Rating from "../components/Rating";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants";
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -72,6 +72,9 @@ const ProductScreen = ({ history, match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+                <Link to="/" className="btn btn-light my-3">
+                  Go Back
+                </Link>
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
@@ -125,8 +128,8 @@ const ProductScreen = ({ history, match }) => {
                         onClick={addToCartHandler}
                         className="btn-block"
                         type="button"
-                        variant="success"
                         disabled={product.countInStock === 0}
+                        variant="success"
                       >
                         Add to Cart
                       </Button>
@@ -151,7 +154,7 @@ const ProductScreen = ({ history, match }) => {
           <Row>
             <Col md={6}>
               <h2 className="my-4">Reviews</h2>
-              {product.reviews?.length === 0 && <Message>No Reviews</Message>}
+              {product.reviews?.length === 0 && <Message variant="primary">No Reviews</Message>}
               <ListGroup variant="flush">
                 {product.reviews?.map((review) => (
                   <ListGroup.Item key={review._id}>
@@ -200,8 +203,8 @@ const ProductScreen = ({ history, match }) => {
                       </Button>
                     </Form>
                   ) : (
-                    <Message>
-                      Please <Link to="/login">sign in</Link> to write a review.
+                    <Message variant="primary">
+                      Please <Link to="/login" className="text-decoration-none">sign in</Link> to write a review.
                     </Message>
                   )}
                 </ListGroup.Item>
@@ -242,7 +245,7 @@ const ProductScreen = ({ history, match }) => {
 
           <h2 className="my-4">Related Products</h2>
           {relatedProducts.length === 0 ? (
-            <Message>No Related Products</Message>
+            <Message variant="primary">No Related Products</Message>
           ) : (
             <Row className="overflow-auto flex-nowrap">
               {relatedProducts.map((related) => (

@@ -29,7 +29,7 @@ const Header = ({ history }) => {
       >
         <Container fluid className="d-flex align-items-center">
           {/* Brand Logo */}
-          <Link to="/" className="navbar-brand text-light fs-3 fw-bold me-5">
+          <Link to="/" className="navbar-brand text-light fs-3 fw-bold me-5 brand-logo">
             PhuongFourth
           </Link>
 
