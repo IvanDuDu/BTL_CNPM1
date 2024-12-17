@@ -51,10 +51,10 @@ const ProductScreen = ({ history, match }) => {
   };
 
   // Mua hàng (thêm vào giỏ hàng và điều hướng)
-  const buyNowHandler = () => {
-    dispatch(addToCart(match.params.id, qty));
+  const buyNowHandler = async () => {
+  await  dispatch(addToCart(match.params.id, qty));
     history.push("/cart");
-    // localStorage.setItem("miniCart", JSON.stringify(product));
+     localStorage.setItem("BuyNow", JSON.stringify(match.params.id));
     // history.push("/shipping");
 
   };

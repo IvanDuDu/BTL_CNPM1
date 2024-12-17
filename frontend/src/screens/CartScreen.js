@@ -6,8 +6,6 @@ import { addToCart, fetchCart, removeFromCart } from "../actions/cartActions";
 import Message from "../components/Message";
 
 const CartScreen = ({ match, location, history }) => {
-  const productId = match.params.productId;
-  const qty = location.search ? Number(location.search.split("=")[1]) : 1;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;   // ở đây đã lấy được thông tin người dùng
@@ -15,19 +13,29 @@ const CartScreen = ({ match, location, history }) => {
   const dispatch = useDispatch();
   const userCart = useSelector((state) => state.cart);
   const {cartItems}=userCart;      
-
+  const BuyNowId= JSON.parse(localStorage.getItem('BuyNow')) 
+  const [miniCart, setMiniCart] = useState([]);
   useEffect(() => {
     if (userInfo) {
-      dispatch(fetchCart()); // Lấy giỏ hàng từ server
+      dispatch(fetchCart());
+      console.log(cartItems[cartItems.length-1])
+
+        if(BuyNowId){
+        const BuyNowItem=cartItems[cartItems.length-1].find((selectedItem) => selectedItem.product === BuyNowId)
+        console.log(BuyNowItem)
+       if(BuyNowItem) setMiniCart([...miniCart,BuyNowItem])
+        dispatch(removeFromCart(BuyNowId))
+        
+        localStorage.removeItem("BuyNow")
+    
+      }   
     }
     else{
       history.push("/login");
     }
   }, [dispatch, userInfo]);
+            
 
-
-                     
-  const [miniCart, setMiniCart] = useState([]);
 
   // Fetch cart data from server when component mounts or when cart changes
   // useEffect(() => {
@@ -50,6 +58,7 @@ const CartScreen = ({ match, location, history }) => {
     localStorage.setItem("miniCart", JSON.stringify(miniCart)); // Save selected items to localStorage
     history.push("/login?redirect=shipping");
   };
+ 
 
   const handleCheckboxChange = (item) => {
     if (miniCart.find((selectedItem) => selectedItem.product === item.product)) {

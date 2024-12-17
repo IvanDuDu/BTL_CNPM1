@@ -18,7 +18,7 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT_METHOD, CART_SAVE_SH
   try {
     const { data } = await axios.post(
       `/api/users/${userInfo._id}/cart/${productId}`, 
-      { qty }, 
+     {qty} , 
       config
     );
 
