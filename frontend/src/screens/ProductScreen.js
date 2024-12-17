@@ -106,17 +106,20 @@ const ProductScreen = ({ history, match }) => {
                   <Row>
                     <Col>Qty</Col>
                     <Col>
-                      <Form.Control
-                        as="select"
-                        value={qty}
-                        onChange={(e) => setQty(e.target.value)}
-                      >
-                        {[...Array(product.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </Form.Control>
+                    <Form.Control
+                          type="number"
+                          value={qty}
+                          onChange={(e) => {
+                            const value = Number(e.target.value);
+                            if (value >= 1 && value <= product.countInStock) {
+                              setQty(value);
+                            }
+                          }}
+                          min="1"
+                          max={product.countInStock}
+                          className="mx-2 text-center"
+                          style={{ width: '70px' }}
+                        />
                     </Col>
                   </Row>
                 </ListGroup.Item>
